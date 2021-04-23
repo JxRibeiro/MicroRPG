@@ -1,7 +1,5 @@
 # Micro RPG text-based game
-
 import random
-
 charStrenght = 0
 charSpeed = 0
 monsterStrenght = 0
@@ -10,7 +8,6 @@ charHP = 0
 monsterHP = 0
 charAttack = 0
 monsterAttack = 0
-
 def fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed):
 	charHP = 50
 	monsterHP = 50
@@ -20,19 +17,15 @@ def fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed):
 	monsterHits = 0
 	monsterPower = 0
 	avgMonsterPower = 0
-	
 	while charHP or monsterHP <= 0:
-		
 		charAttack = random.randint(1, 3)
 		charSpeed = random.randint(1,5)
 		charAS = charAttack + charSpeed
 		monsterAttack = random.randint(1, 3)
 		monsterSpeed = random.randint(1,5)
-		monsterAS = monsterAttack + monsterSpeed
-		
+		monsterAS = monsterAttack + monsterSpeed	
 		if monsterAttack == charAttack:
 			print(f'You and monster landed {charAttack} attack power. ')
-		
 		if charAS > monsterAS:
 			charHits = charHits + 1
 			charPower = charPower + charAttack
