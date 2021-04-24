@@ -16,7 +16,7 @@ pip install random
 ## Usage
 
 ```
-python3 MicroRPG.py
+python3 RPG.py
 ```
 
 ## Contributing
