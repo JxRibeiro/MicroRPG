@@ -1,5 +1,9 @@
 # Micro RPG text-based game
+# Import section
 import random
+import time
+import sys
+# Variables
 charStrenght = 0
 charSpeed = 0
 monsterStrenght = 0
@@ -20,30 +24,46 @@ def fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed):
 	while charHP or monsterHP <= 0:
 		charAttack = random.randint(1, 3)
 		charSpeed = random.randint(1,5)
-		charAS = charAttack + charSpeed
 		monsterAttack = random.randint(1, 3)
 		monsterSpeed = random.randint(1,5)
-		monsterAS = monsterAttack + monsterSpeed	
 		if monsterAttack == charAttack:
-			print(f'You and monster landed {charAttack} attack power. ')
-		if charAS > monsterAS:
+			print('You and monster landed with same attack power.\nNothing happened.')
+			time.sleep(1)
+			
+		if charSpeed > monsterSpeed and charAttack > monsterAttack:
 			charHits = charHits + 1
 			charPower = charPower + charAttack
 			monsterHP = monsterHP - charAttack
-			print(f'You hit the monster with {charAttack}.\nMonster have {monsterHP} HP ')
+			print(f'You hit the monster with {charAttack}.\nMonster have {monsterHP} HP',end='\r')
+			time.sleep(1)
 			if monsterHP <= 0:
 				avgCharPower = charPower / charHits
 				avgCP = "{:.2f}".format(avgCharPower)
-				print(f'Congratulations! You win the battle\nYou landed {charHits} hits. Average power {avgCP} ')
-				break
-		elif charAS < monsterAS:
+				print(f'Congratulations! You win the battle\nYou landed {charHits} hits.\nAverage power {avgCP}')
+				prompt = str(input('Do you want to play again? (Y/N)')).lower()
+				if prompt == 'y':
+					fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed)
+				else:
+					break
+		elif charSpeed < monsterSpeed and charAttack < monsterAttack:
 			monsterHits = monsterHits + 1
 			monsterPower = monsterPower + monsterAttack
 			charHP = charHP - monsterAttack
 			print(f'You try to hit monster with {charAttack}, but monster strikes you back with {monsterAttack}\nYou have {charHP} HP')
+			time.sleep(1)
 			if charHP <= 0:
 				avgMonsterPower = monsterPower / monsterHits
 				avgMP = "{:.2f}".format(avgMonsterPower)
-				print(f'You lost the battle!\nMonster landed {monsterHits}. Average power {avgMP}')
-				break
+				print(f'\rYou lost the battle!\nMonster landed {monsterHits} hits.\nAverage power {avgMP}')
+				prompt = str(input('Do you want to play again? (Y/N) ')).lower()
+				if prompt == 'y':
+					fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed)
+				else:
+					break
+		if charSpeed > monsterSpeed and charAttack < monsterAttack:
+			print('Monster miss the attack!')
+			time.sleep(1)
+		elif charSpeed < monsterSpeed and charAttack > monsterAttack:
+			print('You miss the attack!')
+			time.sleep(1)
 fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed)
