@@ -29,7 +29,7 @@ Feel free to fork this project
 
 ## Roadmap
 Roll dices to determine the attack power and attack speed  
-Critical hit system  
+✅ Critical hit system 
 HP recovery system  
 Spell system  
 
