@@ -2,7 +2,6 @@
 # Import section
 import random
 import time
-import sys
 # Variables
 charStrenght = 0
 charSpeed = 0
@@ -12,6 +11,7 @@ charHP = 0
 monsterHP = 0
 charAttack = 0
 monsterAttack = 0
+criticalHit = 0
 def fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed):
 	charHP = 50
 	monsterHP = 50
@@ -22,6 +22,8 @@ def fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed):
 	monsterPower = 0
 	avgMonsterPower = 0
 	while charHP or monsterHP <= 0:
+		criticalHit = random.randint(0, 1)
+		bonus = random.randint(1, 3)
 		charAttack = random.randint(1, 3)
 		charSpeed = random.randint(1,5)
 		monsterAttack = random.randint(1, 3)
@@ -29,11 +31,15 @@ def fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed):
 		if monsterAttack == charAttack:
 			print('You and monster landed with same attack power.\nNothing happened.')
 			time.sleep(1)
-			
 		if charSpeed > monsterSpeed and charAttack > monsterAttack:
+			if criticalHit == 1:
+				charAttack = charAttack + bonus
+				charHits = charHits + 1
+				charPower = charPower + charAttack
+				monsterHP = monsterHP - charAttack
+				print(f'Wow! You landed a critical hit with {charAttack}!\nMonster have {monsterHP} HP ')
 			charHits = charHits + 1
 			charPower = charPower + charAttack
-			monsterHP = monsterHP - charAttack
 			print(f'You hit the monster with {charAttack}.\nMonster have {monsterHP} HP',end='\r')
 			time.sleep(1)
 			if monsterHP <= 0:
@@ -46,6 +52,13 @@ def fight(charStrenght, charSpeed,monsterStrenght,monsterSpeed):
 				else:
 					break
 		elif charSpeed < monsterSpeed and charAttack < monsterAttack:
+			if criticalHit == 1:
+				monsterAttack = monsterAttack + bonus
+				charHP = charHP - monsterAttack
+				print(f'Oh no you have been hit by a critical hit!\nYou lost {monsterAttack} HP. Now you have {charHP} HP')
+			else:
+				monsterHits = monsterHits + 1
+				monsterPower = monsterPower + monsterAttack
 			monsterHits = monsterHits + 1
 			monsterPower = monsterPower + monsterAttack
 			charHP = charHP - monsterAttack
