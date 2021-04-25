@@ -65,7 +65,7 @@ All classes have:
     +20 MP
     """
     print('[1] Fighter')
-    print('[2] Mage')    
+    print('[2] Mage')
     print('[3] Necromancer')
     print(baseStats)
     userChar = int(input('Choose your class: '))
@@ -94,7 +94,7 @@ All classes have:
             adventure(userChar,cHP, cMP, cAttack, cDefense)
         elif userChoice == 'N':
             charClass()
-            userChar = int(input('Choose your class: '))           
+            userChar = int(input('Choose your class: '))
     if userChar == 3:
         print(descNecromancer)
         userChoice = str(input('Are going to be a necromancer? (Y/N) ')).upper()
@@ -110,6 +110,6 @@ All classes have:
              userChar = int(input('Choose your class: '))
 def adventure(userChar,cHP, cMP, cAttack, cDefense):
     print(f'Welcome {userChar}. Take a look on your stats:')
-    print(f'HP {cHP}\nMP {cMP}\nAttack {cAttack}\nDefense {cDefense}')   
+    print(f'HP {cHP}\nMP {cMP}\nAttack {cAttack}\nDefense {cDefense}')
 gameStart()
 charClass()
